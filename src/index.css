@@ -1,0 +1,156 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%; /* Pure white */
+    --foreground: 220 20% 20%; /* Soft dark gray for text */
+
+    --card: 210 20% 98%; /* Very light gray/white */
+    --card-foreground: 220 20% 20%; /* Soft dark gray for text */
+
+    --popover: 210 20% 98%; /* Very light gray/white */
+    --popover-foreground: 220 20% 20%; /* Soft dark gray for text */
+
+    --primary: 212 80% 60%; /* Softer, lighter blue */
+    --primary-foreground: 220 20% 20%; /* Soft dark gray */
+
+    --secondary: 142 50% 60%; /* Softer, lighter green */
+    --secondary-foreground: 220 20% 20%; /* Soft dark gray */
+
+    --muted: 210 30% 95%; /* Very light gray */
+    --muted-foreground: 220 10% 45%; /* Medium gray */
+
+    --accent: 212 70% 70%; /* Soft, light blue */
+    --accent-foreground: 220 20% 20%; /* Soft dark gray */
+
+    --destructive: 350 70% 65%; /* Softer red */
+    --destructive-foreground: 0 0% 100%; /* White */
+
+    --border: 220 20% 90%; /* Very light gray border */
+    --input: 220 20% 90%; /* Very light gray input */
+    --ring: 212 80% 60%; /* Matching primary color */
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 220 20% 15%; /* Dark soft gray */
+    --foreground: 0 0% 98%; /* Almost white for text */
+
+    --card: 220 20% 20%; /* Slightly lighter than background */
+    --card-foreground: 0 0% 98%; /* Almost white */
+
+    --popover: 220 20% 20%; /* Slightly lighter than background */
+    --popover-foreground: 0 0% 98%; /* Almost white */
+
+    --primary: 212 80% 65%; /* Soft, slightly brighter blue */
+    --primary-foreground: 0 0% 98%; /* Almost white */
+
+    --secondary: 142 50% 65%; /* Soft, slightly brighter green */
+    --secondary-foreground: 0 0% 98%; /* Almost white */
+
+    --muted: 220 20% 25%; /* Dark muted gray */
+    --muted-foreground: 220 10% 65%; /* Light gray */
+
+    --accent: 212 70% 75%; /* Soft, light blue */
+    --accent-foreground: 0 0% 98%; /* Almost white */
+
+    --destructive: 350 70% 55%; /* Soft red */
+    --destructive-foreground: 0 0% 98%; /* Almost white */
+
+    --border: 220 20% 25%; /* Dark border */
+    --input: 220 20% 25%; /* Dark input */
+    --ring: 212 80% 65%; /* Matching primary color */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+.hover-color-effect {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+/* Removing the background color on hover */
+.hover-color-effect::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.3s ease;
+}
+
+.hover-color-effect:hover::before {
+  opacity: 0;
+}
+
+.hover-border-effect {
+  position: relative;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.hover-border-effect:hover {
+  border-image: linear-gradient(135deg, hsl(212, 100%, 45%), hsl(142, 71%, 45%)) 1;
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Removing the background gradient on hover */
+.hover-border-effect::after {
+  content: none;
+}
+
+@keyframes wave {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.animate-wave {
+  animation: wave 1.5s ease-in-out infinite;
+}
+
+@keyframes multi-color {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Additional animation for component entrances */
+@keyframes border-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 rgba(16, 109, 246, 0);
+  }
+  50% {
+    box-shadow: 0 0 10px rgba(16, 109, 246, 0.3), 0 0 15px rgba(37, 207, 94, 0.2);
+  }
+}
+
+.hover-border-effect:hover {
+  animation: border-pulse 2s infinite;
+}
